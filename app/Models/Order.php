@@ -48,7 +48,7 @@ class Order extends Model
      */
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'order_items', 'order_id', 'item_id')->withPivot('quantity_ija', 'quantity_aj', 'price');
+        return $this->belongsToMany(Item::class, 'order_items', 'order_id', 'item_id')->withPivot('quantity_ija', 'quantity_aj', 'price', 'serial', 'section');
     }
 
     /**
@@ -56,7 +56,7 @@ class Order extends Model
      */
     public function rawMaterials()
     {
-        return $this->belongsToMany(RawMaterial::class, 'order_raw_materials', 'order_id', 'raw_material_id')->withPivot('quantity_aj', 'price');
+        return $this->belongsToMany(RawMaterial::class, 'order_raw_materials', 'order_id', 'raw_material_id')->withPivot('quantity_aj', 'price', 'serial');
     }
 
     /**

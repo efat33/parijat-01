@@ -16,7 +16,8 @@ class FactoryOrderItemPivotResource extends JsonResource
     {
         return [
             'subQuantity' => $this->sub_quantity,
-            'totalQuantity' => $this->total_quantity
+            'totalQuantity' => $this->total_quantity,
+            'serial' => $this->serial,
         ];
     }
 }

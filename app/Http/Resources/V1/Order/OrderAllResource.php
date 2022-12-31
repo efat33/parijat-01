@@ -15,6 +15,7 @@ class OrderAllResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'subTotal' => $this->subtotal,
             'commission_1' => $this->commission_1,
             'commission_2' => $this->commission_2,

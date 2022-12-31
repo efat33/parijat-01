@@ -38,7 +38,7 @@ class OrderController extends Controller
             });
         }
 
-        $orders = $orderQuery->paginate(config('settings.pagination.per_page'), ['store_id', 'subtotal', 'commission_1', 'commission_2', 'total', 'created_at']);
+        $orders = $orderQuery->paginate(config('settings.pagination.per_page'), ['id', 'store_id', 'subtotal', 'commission_1', 'commission_2', 'total', 'created_at']);
 
         return $this->success(new OrderAllCollection($orders));
     }
@@ -96,7 +96,7 @@ class OrderController extends Controller
             OrderRawMaterial::upsert($raw_materials, ['order_id', 'raw_material_id']);
         }
 
-        return $this->success();
+        return $this->success(['orderId' => $order_id]);
     }
 
     /**

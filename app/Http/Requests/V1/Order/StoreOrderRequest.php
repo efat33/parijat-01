@@ -71,10 +71,13 @@ class StoreOrderRequest extends FormRequest
             'items.*.quantity_ija' => ['required', 'integer'],
             'items.*.quantity_aj' => ['required', 'integer'],
             'items.*.price' => ['required', 'integer'],
+            'items.*.serial' => ['required', 'integer'],
+            'items.*.section' => ['required', 'integer'],
 
             'raw_materials.*.raw_material_id' => ['required', 'integer'],
             'raw_materials.*.quantity_aj' => ['required', 'integer'],
             'raw_materials.*.price' => ['required', 'integer'],
+            'raw_materials.*.serial' => ['required', 'integer'],
         ];
     }
 

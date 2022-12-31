@@ -17,7 +17,9 @@ class OrderItemPivotResource extends JsonResource
         return [
             'quantityIja' => $this->quantity_ija,
             'quantityAj' => $this->quantity_aj,
-            'price' => $this->price
+            'price' => $this->price,
+            'serial' => $this->serial,
+            'section' => $this->section,
         ];
     }
 }

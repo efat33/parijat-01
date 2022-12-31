@@ -16,7 +16,8 @@ class OrderRawMaterialPivotResource extends JsonResource
     {
         return [
             'quantityAj' => $this->quantity_aj,
-            'price' => $this->price
+            'price' => $this->price,
+            'serial' => $this->serial,
         ];
     }
 }

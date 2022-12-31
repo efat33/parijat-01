@@ -33,7 +33,7 @@ class FactoryOrder extends Model
      */
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'factory_order_items', 'factory_order_id', 'item_id')->withPivot('sub_quantity', 'total_quantity');
+        return $this->belongsToMany(Item::class, 'factory_order_items', 'factory_order_id', 'item_id')->withPivot('sub_quantity', 'total_quantity', 'serial');
     }
 
     /**
