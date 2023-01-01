@@ -34,8 +34,8 @@ class OrderController extends Controller
         if ($date) $orderQuery->whereDate('created_at', '=', $date);
 
         if ($store) {
-            $orderQuery->whereHas('store', function ($q) {
-                $q->where('id', 3);
+            $orderQuery->whereHas('store', function ($q) use ($store) {
+                $q->where('id', $store);
             });
         }
 
