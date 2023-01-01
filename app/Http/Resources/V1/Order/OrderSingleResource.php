@@ -24,6 +24,7 @@ class OrderSingleResource extends JsonResource
             'store' => new OrderAllStoreResource($this->store),
             'items' => OrderItemArrayResource::collection($this->items),
             'rawMaterials' => OrderRawMaterialArrayResource::collection($this->rawMaterials),
+            'chawkbazarItems' => OrderChawkbazarArrayResource::collection($this->chawkbazarItems),
         ];
     }
 }

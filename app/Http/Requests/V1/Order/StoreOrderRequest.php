@@ -78,6 +78,11 @@ class StoreOrderRequest extends FormRequest
             'raw_materials.*.quantity_aj' => ['required', 'integer'],
             'raw_materials.*.price' => ['required', 'integer'],
             'raw_materials.*.serial' => ['required', 'integer'],
+
+            'chawkbazar_items.*.item_name' => ['required', 'string', 'max:255'],
+            'chawkbazar_items.*.quantity_aj' => ['required', 'integer'],
+            'chawkbazar_items.*.price' => ['required', 'integer'],
+            'chawkbazar_items.*.serial' => ['required', 'integer'],
         ];
     }
 
@@ -104,6 +109,12 @@ class StoreOrderRequest extends FormRequest
             'raw_materials.*.quantity_aj.integer' => 'The Raw Material Quantity Aj must be an integer',
             'raw_materials.*.price.required' => 'Raw Material Price is required',
             'raw_materials.*.price.integer' => 'The Raw Material Price must be an integer',
+
+            'chawkbazar_items.*.item_name.required' => 'Chawbazar item name is required',
+            'chawkbazar_items.*.quantity_aj.required' => 'Chawbazar item Quantity is required',
+            'chawkbazar_items.*.quantity_aj.integer' => 'The Chawbazar item Quantity must be an integer',
+            'chawkbazar_items.*.price.required' => 'Chawbazar item Price is required',
+            'chawkbazar_items.*.price.integer' => 'The Chawbazar item Price must be an integer',
         ];
     }
 }

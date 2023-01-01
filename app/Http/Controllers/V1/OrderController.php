@@ -10,6 +10,7 @@ use App\Http\Requests\V1\Order\UpdateOrderRequest;
 use App\Http\Resources\V1\Order\OrderAllCollection;
 use App\Http\Resources\V1\Order\OrderAllResource;
 use App\Http\Resources\V1\Order\OrderSingleResource;
+use App\Models\OrderChawkbazarItem;
 use App\Models\OrderItem;
 use App\Models\OrderRawMaterial;
 use App\Traits\V1\HttpResponses;
@@ -96,6 +97,17 @@ class OrderController extends Controller
             OrderRawMaterial::upsert($raw_materials, ['order_id', 'raw_material_id']);
         }
 
+        // insert chawkbazar items into order_chawkbazar_items table 
+        if (isset($r_arr['chawkbazar_items']) && count($r_arr['chawkbazar_items']) > 0) {
+            $raw_materials = array_reduce($r_arr['chawkbazar_items'], function ($result, $item) use ($order_id) {
+                $item['order_id'] = $order_id;
+                $result[] = $item;
+                return $result;
+            }, array());
+
+            OrderChawkbazarItem::upsert($raw_materials, ['order_id', 'serial']);
+        }
+
         return $this->success(['orderId' => $order_id]);
     }
 
@@ -162,6 +174,17 @@ class OrderController extends Controller
             }, array());
 
             OrderRawMaterial::upsert($raw_materials, ['order_id', 'raw_material_id']);
+        }
+
+        // insert chawkbazar items into order_chawkbazar_items table 
+        if (isset($r_arr['chawkbazar_items']) && count($r_arr['chawkbazar_items']) > 0) {
+            $raw_materials = array_reduce($r_arr['chawkbazar_items'], function ($result, $item) use ($order_id) {
+                $item['order_id'] = $order_id;
+                $result[] = $item;
+                return $result;
+            }, array());
+
+            OrderChawkbazarItem::upsert($raw_materials, ['order_id', 'serial']);
         }
 
         return $this->success();

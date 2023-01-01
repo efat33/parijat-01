@@ -60,6 +60,14 @@ class Order extends Model
     }
 
     /**
+     * The raw materials that belong to the store.
+     */
+    public function chawkbazarItems()
+    {
+        return $this->hasMany(OrderChawkbazarItem::class, 'order_id');
+    }
+
+    /**
      * The order items that belong to the order.
      */
     public function orderItems()
