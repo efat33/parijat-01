@@ -24,8 +24,11 @@ class StoreFactoryOrderTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            '*.item_id' => ['required', 'integer'],
-            '*.serial' => ['required', 'integer'],
+            'labels.*.name' => ['required', 'string'],
+            'labels.*.value' => ['required', 'string'],
+
+            'items.*.item_id' => ['required', 'integer'],
+            'items.*.serial' => ['required', 'integer'],
         ];
     }
 }

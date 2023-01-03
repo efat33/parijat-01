@@ -7,6 +7,7 @@ use App\Models\FactoryOrderTemplate;
 use App\Http\Requests\V1\FactoryOrderTemplate\StoreFactoryOrderTemplateRequest;
 use App\Http\Requests\V1\FactoryOrderTemplate\UpdateFactoryOrderTemplateRequest;
 use App\Http\Resources\V1\FactoryOrder\FactoryOrderTemplateResource;
+use App\Models\Option;
 use App\Traits\V1\HttpResponses;
 
 class FactoryOrderTemplateController extends Controller
@@ -40,7 +41,11 @@ class FactoryOrderTemplateController extends Controller
      */
     public function store(StoreFactoryOrderTemplateRequest $request)
     {
-        FactoryOrderTemplate::upsert($request->toArray(), ['item_id'], ['serial']);
+        $r_arr = $request->toArray();
+
+        FactoryOrderTemplate::upsert($r_arr['items'], ['item_id'], ['serial']);
+
+        Option::upsert($r_arr['labels'], ['name'], ['value']);
 
         return $this->success();
     }
@@ -52,7 +57,13 @@ class FactoryOrderTemplateController extends Controller
      */
     public function show()
     {
-        return $this->success(FactoryOrderTemplateResource::collection(FactoryOrderTemplate::all()));
+        $output = [];
+        $output['items'] = FactoryOrderTemplate::all(['item_id', 'serial']);
+        $output['labels'] = Option::where('name', 'col1_labels')
+            ->orWhere('name', 'col2_labels')
+            ->get(['name', 'value']);
+
+        return $this->success($output);
     }
 
     /**
