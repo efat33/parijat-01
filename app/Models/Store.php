@@ -27,7 +27,7 @@ class Store extends Model
      */
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'store_items', 'store_id', 'item_id')->withPivot('serial', 'section');;
+        return $this->belongsToMany(Item::class, 'store_items', 'store_id', 'item_id')->withPivot('serial', 'section');
     }
 
     /**
@@ -35,7 +35,7 @@ class Store extends Model
      */
     public function rawMaterials()
     {
-        return $this->belongsToMany(RawMaterial::class, 'store_raw_materials', 'store_id', 'raw_material_id')->withPivot('serial', 'section');;
+        return $this->belongsToMany(RawMaterial::class, 'store_raw_materials', 'store_id', 'raw_material_id')->withPivot('serial', 'section');
     }
 
     /**

@@ -43,6 +43,10 @@ class FactoryOrderTemplateController extends Controller
     {
         $r_arr = $request->toArray();
 
+        FactoryOrderTemplate::truncate();
+
+        // FactoryOrderTemplate::insert($r_arr['items']);
+
         FactoryOrderTemplate::upsert($r_arr['items'], ['item_id'], ['serial']);
 
         Option::upsert($r_arr['labels'], ['name'], ['value']);

@@ -45,7 +45,14 @@ class StoreItemController extends Controller
      */
     public function store(BulkStoreStoreItemRequest $request)
     {
-        StoreItem::upsert($request->toArray(), ['store_id', 'item_id'], ['serial', 'section']);
+        $r_arr = $request->toArray();
+
+        if (count($r_arr) > 0) {
+            StoreItem::where('store_id', $r_arr[0]['store_id'])->delete();
+            StoreItem::upsert($r_arr, ['store_id', 'item_id'], ['serial', 'section']);
+        }
+
+
 
         return $this->success();
     }

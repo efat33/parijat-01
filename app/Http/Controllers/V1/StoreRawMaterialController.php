@@ -45,7 +45,15 @@ class StoreRawMaterialController extends Controller
      */
     public function store(BulkStoreStoreRawMaterialRequest $request)
     {
-        StoreRawMaterial::upsert($request->toArray(), ['store_id', 'raw_material_id'], ['serial', 'section']);
+        $r_arr = $request->toArray();
+
+        if (count($r_arr) > 0) {
+            StoreRawMaterial::where('store_id', $r_arr[0]['store_id'])->delete();
+            // StoreRawMaterial::insert($r_arr);
+            StoreRawMaterial::upsert($request->toArray(), ['store_id', 'raw_material_id'], ['serial', 'section']);
+        }
+
+
 
         return $this->success();
     }
