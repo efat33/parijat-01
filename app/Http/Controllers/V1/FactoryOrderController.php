@@ -23,7 +23,7 @@ class FactoryOrderController extends Controller
      */
     public function index()
     {
-        return $this->success(new FactoryOrderAllCollection(FactoryOrder::orderBy('order_date', 'desc')->paginate(config('settings.pagination.per_page'), ['id', 'order_date'])));
+        return $this->success(new FactoryOrderAllCollection(FactoryOrder::orderBy('created_at', 'desc')->paginate(config('settings.pagination.per_page'), ['id', 'order_date', 'created_at'])));
     }
 
     /**

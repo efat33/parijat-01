@@ -17,6 +17,7 @@ class FactoryOrderAllResource extends JsonResource
         return [
             'id' => $this->id,
             'orderDate' => $this->order_date,
+            'createdAt' => $this->created_at,
         ];
     }
 }
