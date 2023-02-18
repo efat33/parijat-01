@@ -27,7 +27,7 @@ class UpdateFactoryOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'order_date' => ['required', 'date', Rule::unique(FactoryOrder::class)->ignore($this->factory_order->id)],  // factory_order is passed in the route ~ api/v1/factory-order/{factory_order}
+            'order_date' => ['required', 'date'],  // factory_order is passed in the route ~ api/v1/factory-order/{factory_order}
 
             'items.*.item_id' => ['required', 'integer'],
             'items.*.sub_quantity' => ['required', 'json'],
