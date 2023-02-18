@@ -24,7 +24,7 @@ class StoreFactoryOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'order_date' => ['required', 'date', 'unique:factory_orders'],
+            'order_date' => ['required', 'date'],
 
             'items.*.item_id' => ['required', 'integer'],
             'items.*.sub_quantity' => ['required', 'json'],
